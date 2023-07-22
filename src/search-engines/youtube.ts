@@ -1,5 +1,28 @@
 import config from "config.json";
 
+type Thumbnail = {
+  url: string;
+  width?: number;
+  height?: number;
+};
+
+type Thumbnails = {
+  default: Thumbnail;
+  medium: Thumbnail;
+  high: Thumbnail;
+};
+
+type Snippet = {
+  channelId: string;
+  channelTitle: string;
+  description: string;
+  liveBroadcastContent: string;
+  publishTime: string;
+  publishedAt: string;
+  thumbnails: Thumbnails;
+  title: string;
+};
+
 type YoutubeCompletionChannelResult = {
   etag: string;
   id: {
@@ -7,20 +30,7 @@ type YoutubeCompletionChannelResult = {
     kind: "youtube#channel";
   };
   kind: "youtube#searchResult";
-  snippet: {
-    channelId: string;
-    channelTitle: string;
-    description: string;
-    liveBroadcastContent: string;
-    publishTime: string;
-    publishedAt: string;
-    thumbnails: {
-      default: { url: string };
-      medium: { url: string };
-      high: { url: string };
-    };
-    title: string;
-  };
+  snippet: Snippet;
 };
 
 type YoutubeCompletionVideoResult = {
@@ -30,32 +40,7 @@ type YoutubeCompletionVideoResult = {
     videoId: string;
   };
   kind: "youtube#searchResult";
-  snippet: {
-    channelId: string;
-    channelTitle: string;
-    description: string;
-    liveBroadcastContent: string;
-    publishTime: string;
-    publishedAt: string;
-    thumbnails: {
-      default: {
-        url: string;
-        width: number;
-        height: number;
-      };
-      medium: {
-        url: string;
-        width: number;
-        height: number;
-      };
-      high: {
-        url: string;
-        width: number;
-        height: number;
-      };
-    };
-    title: string;
-  };
+  snippet: Snippet;
 };
 
 type YoutubeCompletionResult = {
@@ -82,7 +67,7 @@ export default {
           html = `
             <div style="display: flex; flex-direction: row">
               <img
-                style="width: 120px; height: 90px; margin-right: 0.8em"
+                style="max-width: 160px; height: 90px; margin-right: 0.8em"
                 alt="thumbnail"
                 src="${thumb.url}">
               <div>
@@ -102,7 +87,7 @@ export default {
           html = `
             <div style="display: flex; flex-direction: row">
               <img
-                style="width: 120px; height: 90px; margin-right: 0.8em"
+                style="max-width: 160px; height: 90px; margin-right: 0.8em"
                 alt="thumbnail"
                 src="${thumb.url}">
               <div>
