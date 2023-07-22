@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --outfile=surfingkeys.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.18.10",
+    "typescript": "^5.1.3"
+  }
+}
