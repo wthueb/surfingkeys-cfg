@@ -52,8 +52,8 @@ type YoutubeCompletionResult = {
 };
 
 export default {
-  searchUrl: "https://www.youtube.com/results?search_query=",
-  compUrl: `https://www.googleapis.com/youtube/v3/search?maxResults=20&part=snippet&type=video,channel&key=${config.youtubeKey}&safeSearch=none&q=%s`,
+  searchUrl: "https://www.youtube.com/results?search_query=%s",
+  compUrl: `https://www.googleapis.com/youtube/v3/search?maxResults=20&part=snippet&type=video,channel&key=${config.googleKey}&safeSearch=none&q=%s`,
   compFn: (res: { text: string }) =>
     (JSON.parse(res.text) as YoutubeCompletionResult).items.map((item) => {
       const thumb = item.snippet.thumbnails.default;
@@ -113,4 +113,5 @@ export default {
 
       return { html, props: { url } };
     }),
+  faviconUrl: "https://www.youtube.com/favicon.ico",
 };
