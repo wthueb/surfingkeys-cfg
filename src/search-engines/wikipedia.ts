@@ -25,12 +25,22 @@ export default {
       .map((page) => {
         const img = page.thumbnail?.source ?? defaultImageSvg;
 
+        const descriptionElem = page.description
+          ? `<div>${page.description}</div>`
+          : "";
+
         const html = `
-          <div style="padding: 5px; display: grid; grid-template-columns: 60px 1fr; grid-gap: 15px">
-            <img style="width: 60px" src="${img}">
+          <div style="display: flex; flex-direction: row">
+            <img
+              style="max-width: 160px; height: 90px; margin-right: 0.8em"
+              alt="thumbnail"
+              src="${img}">
             <div>
-              <div class="title"><strong>${page.title}</strong></div>
-              <div class="title">${page.description ?? ""}</div>
+              <div class="title">${page.title}</div>
+              <div>
+                ${descriptionElem}
+                <div class="url">${page.fullurl}</div>
+              </div>
             </div>
           </div>`;
 
