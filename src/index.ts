@@ -101,10 +101,10 @@ api.mapkey("r", `#${Help.pageNav}reload the page`, () =>
 
 api.mapkey("x", `#${Help.tabs}close current tab`, () => RUNTIME("closeTab"));
 api.mapkey("X", `#${Help.tabs}restore closed tab`, () => RUNTIME("openLast"));
-api.mapkey(">>", `${Help.tabs}move tab to the right`, () =>
+api.mapkey(">>", `#${Help.tabs}move tab to the right`, () =>
   RUNTIME("moveTab", { step: 1 })
 );
-api.mapkey("<<", `${Help.tabs}move tab to the left`, () =>
+api.mapkey("<<", `#${Help.tabs}move tab to the left`, () =>
   RUNTIME("moveTab", { step: -1 })
 );
 
