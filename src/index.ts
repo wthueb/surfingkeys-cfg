@@ -40,10 +40,10 @@ api.mapkey("h", `#${Help.scroll}left`, () => Normal.scroll("left"));
 api.mapkey("j", `#${Help.scroll}down`, () => Normal.scroll("down"));
 api.mapkey("k", `#${Help.scroll}up`, () => Normal.scroll("up"));
 api.mapkey("l", `#${Help.scroll}right`, () => Normal.scroll("right"));
-api.mapkey("<Ctrl-f>", `#${Help.scroll}half page down`, () =>
+api.mapkey("<Ctrl-d>", `#${Help.scroll}half page down`, () =>
   Normal.scroll("pageDown")
 );
-api.mapkey("<Ctrl-b>", `#${Help.scroll}half page up`, () =>
+api.mapkey("<Ctrl-u>", `#${Help.scroll}half page up`, () =>
   Normal.scroll("pageUp")
 );
 api.mapkey("gg", `#${Help.scroll}top`, () => Normal.scroll("top"));
