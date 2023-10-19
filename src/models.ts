@@ -27,6 +27,11 @@ export interface Keymap {
     helpClass?: Help;
 }
 
+export interface SiteConfig {
+    domain: RegExp;
+    keys: Keymap[];
+}
+
 type CompletionResult = { html: string; props: { url: string } };
 
 export interface SearchEngine {
