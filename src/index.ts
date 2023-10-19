@@ -4,31 +4,14 @@ import google from "./search-engines/google";
 import wikipedia from "./search-engines/wikipedia";
 import youtube from "./search-engines/youtube";
 
+import youtubeSite from "./sites/youtube";
+
+import { Help, Keymap } from "src/models";
+
 const { Normal, Front, Hints, Visual, RUNTIME } = api;
 
 const INPUTABLE =
   "input:not([type=submit]), textarea, *[contenteditable=true], *[role=textbox], select, div.ace_cursor";
-
-// https://github.com/brookhong/Surfingkeys/blob/master/src/content_scripts/ui/frontend.js#L280
-enum Help {
-  help = 0,
-  mouseClick = 1,
-  scroll = 2,
-  tabs = 3,
-  pageNav = 4,
-  sessions = 5,
-  searchSelectedWith = 6,
-  clipboard = 7,
-  omnibar = 8,
-  visualMode = 9,
-  vimMarks = 10,
-  settings = 11,
-  chromeURLs = 12,
-  proxy = 13,
-  misc = 14,
-  insertMode = 15,
-  lurkMode = 16,
-}
 
 api.unmapAllExcept(["?", "/", "v", "V", "n", "N", "w", "cs"]);
 
@@ -36,104 +19,213 @@ api.unmapAllExcept(["?", "/", "v", "V", "n", "N", "w", "cs"]);
 
 //api.mapkey("v", `#${Help.help}enter visual mode`, () => Visual.toggle());
 
-api.mapkey("h", `#${Help.scroll}left`, () => Normal.scroll("left"));
-api.mapkey("j", `#${Help.scroll}down`, () => Normal.scroll("down"));
-api.mapkey("k", `#${Help.scroll}up`, () => Normal.scroll("up"));
-api.mapkey("l", `#${Help.scroll}right`, () => Normal.scroll("right"));
-api.mapkey("<Ctrl-d>", `#${Help.scroll}half page down`, () =>
-  Normal.scroll("pageDown")
-);
-api.mapkey("<Ctrl-u>", `#${Help.scroll}half page up`, () =>
-  Normal.scroll("pageUp")
-);
-api.mapkey("gg", `#${Help.scroll}top`, () => Normal.scroll("top"));
-api.mapkey("G", `#${Help.scroll}bottom`, () => Normal.scroll("bottom"));
-
-api.mapkey("a", `#${Help.help}temporary passthrough`, () => {
-  const timeout = 1500;
-  Normal.passThrough(timeout);
-  Front.showBanner("temporary passthrough enabled", timeout);
-});
-
-api.mapkey("o", `#${Help.omnibar}open URL in current tab`, () =>
-  Front.openOmnibar({ type: "URLs", tabbed: false })
-);
-api.mapkey("O", `#${Help.omnibar}open URL in new tab`, () =>
-  Front.openOmnibar({ type: "URLs", tabbed: true })
-);
-api.mapkey("b", `#${Help.omnibar}open bookmark in current tab`, () =>
-  Front.openOmnibar({ type: "Bookmarks", tabbed: false })
-);
-api.mapkey("B", `#${Help.omnibar}open bookmark in new tab`, () =>
-  Front.openOmnibar({ type: "Bookmarks", tabbed: true })
-);
-api.mapkey("u", `#${Help.omnibar}open URL from history`, () =>
-  Front.openOmnibar({ type: "History", tabbed: false })
-);
-api.mapkey("U", `#${Help.omnibar}open URL from history in new tab`, () =>
-  Front.openOmnibar({ type: "History", tabbed: true })
-);
-api.mapkey(":", `#${Help.omnibar}open omnibar in command mode`, () =>
-  Front.openOmnibar({ type: "Commands" })
-);
-
-api.mapkey("f", `#${Help.mouseClick}open link in current tab`, () =>
-  Hints.create("", Hints.dispatchMouseClick, { tabbed: false })
-);
-api.mapkey("F", `#${Help.mouseClick}open link in new tab`, () =>
-  Hints.create("", Hints.dispatchMouseClick, { tabbed: true, active: true })
-);
-
-api.mapkey("S", `#${Help.pageNav}go back in history`, () => history.back(), {
-  repeatIgnore: true,
-});
-api.mapkey(
-  "D",
-  `#${Help.pageNav}go forward in history`,
-  () => history.forward(),
+let keymaps: Keymap[] = [
   {
-    repeatIgnore: true,
-  }
-);
-api.mapkey("r", `#${Help.pageNav}reload the page`, () =>
-  RUNTIME("reloadTab", { nocache: false })
-);
+    keys: "h",
+    action: () => Normal.scroll("left"),
+    desc: "left",
+    helpClass: Help.scroll,
+  },
+  {
+    keys: "j",
+    action: () => Normal.scroll("down"),
+    desc: "down",
+    helpClass: Help.scroll,
+  },
+  {
+    keys: "k",
+    action: () => Normal.scroll("up"),
+    desc: "up",
+    helpClass: Help.scroll,
+  },
+  {
+    keys: "l",
+    action: () => Normal.scroll("right"),
+    desc: "right",
+    helpClass: Help.scroll,
+  },
+  {
+    keys: "<Ctrl-d>",
+    action: () => Normal.scroll("pageDown"),
+    desc: "half page down",
+    helpClass: Help.scroll,
+  },
+  {
+    keys: "<Ctrl-u>",
+    action: () => Normal.scroll("pageUp"),
+    desc: "half page up",
+    helpClass: Help.scroll,
+  },
+  {
+    keys: "gg",
+    action: () => Normal.scroll("top"),
+    desc: "top",
+    helpClass: Help.scroll,
+  },
+  {
+    keys: "G",
+    action: () => Normal.scroll("bottom"),
+    desc: "bottom",
+    helpClass: Help.scroll,
+  },
+  {
+    keys: "a",
+    action: () => {
+      const timeout = 1500;
+      Normal.passThrough(timeout);
+      Front.showBanner("temporary passthrough enabled", timeout);
+    },
+    desc: "temporary passthrough",
+    helpClass: Help.help,
+  },
+  {
+    keys: "o",
+    action: () => Front.openOmnibar({ type: "URLs", tabbed: false }),
+    desc: "open URL in current tab",
+    helpClass: Help.omnibar,
+  },
+  {
+    keys: "O",
+    action: () => Front.openOmnibar({ type: "URLs", tabbed: true }),
+    desc: "open URL in new tab",
+    helpClass: Help.omnibar,
+  },
+  {
+    keys: "b",
+    action: () => Front.openOmnibar({ type: "Bookmarks", tabbed: false }),
+    desc: "open bookmark in current tab",
+    helpClass: Help.omnibar,
+  },
+  {
+    keys: "B",
+    action: () => Front.openOmnibar({ type: "Bookmarks", tabbed: true }),
+    desc: "open bookmark in new tab",
+    helpClass: Help.omnibar,
+  },
+  {
+    keys: "u",
+    action: () => Front.openOmnibar({ type: "History", tabbed: false }),
+    desc: "open URL from history",
+    helpClass: Help.omnibar,
+  },
+  {
+    keys: "U",
+    action: () => Front.openOmnibar({ type: "History", tabbed: true }),
+    desc: "open URL from history in new tab",
+    helpClass: Help.omnibar,
+  },
+  {
+    keys: ":",
+    action: () => Front.openOmnibar({ type: "Commands" }),
+    desc: "open omnibar in command mode",
+    helpClass: Help.omnibar,
+  },
+  {
+    keys: "f",
+    action: () => Hints.create("", Hints.dispatchMouseClick, { tabbed: false }),
+    desc: "open link in current tab",
+    helpClass: Help.mouseClick,
+  },
+  {
+    keys: "F",
+    action: () =>
+      Hints.create("", Hints.dispatchMouseClick, {
+        tabbed: true,
+        active: true,
+      }),
+    desc: "open link in new tab",
+    helpClass: Help.mouseClick,
+  },
+  {
+    keys: "S",
+    action: () => history.back(),
+    opts: { repeatIgnore: true },
+    desc: "go back in history",
+    helpClass: Help.pageNav,
+  },
+  {
+    keys: "D",
+    action: () => history.forward(),
+    opts: { repeatIgnore: true },
+    desc: "go forward in history",
+    helpClass: Help.pageNav,
+  },
+  {
+    keys: "r",
+    action: () => RUNTIME("reloadTab", { nocache: false }),
+    desc: "reload the page",
+    helpClass: Help.pageNav,
+  },
+  {
+    keys: "x",
+    action: () => RUNTIME("closeTab"),
+    desc: "close current tab",
+    helpClass: Help.tabs,
+  },
+  {
+    keys: "X",
+    action: () => RUNTIME("openLast"),
+    desc: "restore closed tab",
+    helpClass: Help.tabs,
+  },
+  {
+    keys: ">>",
+    action: () => RUNTIME("moveTab", { step: 1 }),
+    desc: "move tab to the right",
+    helpClass: Help.tabs,
+  },
+  {
+    keys: "<<",
+    action: () => RUNTIME("moveTab", { step: -1 }),
+    desc: "move tab to the left",
+    helpClass: Help.tabs,
+  },
+  {
+    keys: "zr",
+    action: () => RUNTIME("setZoom", { zoomFactor: 0 }),
+    desc: "zoom reset",
+    helpClass: Help.pageNav,
+  },
+  {
+    keys: "zi",
+    action: () => RUNTIME("setZoom", { zoomFactor: 0.1 }),
+    desc: "zoom in",
+    helpClass: Help.pageNav,
+  },
+  {
+    keys: "zo",
+    action: () => RUNTIME("setZoom", { zoomFactor: -0.1 }),
+    desc: "zoom out",
+    helpClass: Help.pageNav,
+  },
+  {
+    keys: "gi",
+    action: () =>
+      Hints.create(INPUTABLE, (elem) => Hints.dispatchMouseClick(elem)),
+    desc: "go to the first edit box",
+    helpClass: Help.mouseClick,
+  },
+  {
+    keys: "i",
+    action: () =>
+      Hints.create(INPUTABLE, (elem) => Hints.dispatchMouseClick(elem)),
+    desc: "go to edit box",
+    helpClass: Help.mouseClick,
+  },
+  {
+    keys: "I",
+    action: () => Hints.create(INPUTABLE, (elem) => Front.showEditor(elem)),
+    desc: "go to edit box with vim editor",
+    helpClass: Help.mouseClick,
+  },
+];
 
-api.mapkey("x", `#${Help.tabs}close current tab`, () => RUNTIME("closeTab"));
-api.mapkey("X", `#${Help.tabs}restore closed tab`, () => RUNTIME("openLast"));
-api.mapkey(">>", `#${Help.tabs}move tab to the right`, () =>
-  RUNTIME("moveTab", { step: 1 })
-);
-api.mapkey("<<", `#${Help.tabs}move tab to the left`, () =>
-  RUNTIME("moveTab", { step: -1 })
-);
+keymaps = keymaps.concat(youtubeSite.keys);
 
-api.mapkey("zr", `#${Help.pageNav}zoom reset`, () => {
-  RUNTIME("setZoom", {
-    zoomFactor: 0,
-  });
-});
-api.mapkey("zi", `#${Help.pageNav}zoom in`, () => {
-  RUNTIME("setZoom", {
-    zoomFactor: 0.1,
-  });
-});
-api.mapkey("zo", `#${Help.pageNav}zoom out`, () => {
-  RUNTIME("setZoom", {
-    zoomFactor: -0.1,
-  });
-});
-
-api.mapkey("gi", `#${Help.mouseClick}go to the first edit box`, () => {
-  Hints.create(INPUTABLE, (elem) => Hints.dispatchMouseClick(elem));
-});
-
-api.mapkey("i", `#${Help.mouseClick}go to edit box`, function () {
-  Hints.create(INPUTABLE, (elem) => Hints.dispatchMouseClick(elem));
-});
-api.mapkey("I", `#${Help.mouseClick}go to edit box with vim editor`, () =>
-  Hints.create(INPUTABLE, (elem) => Front.showEditor(elem))
-);
+for (const keymap of keymaps) {
+  const helpClass = keymap.helpClass ?? Help.misc;
+  api.mapkey(keymap.keys, `#${helpClass}${keymap.desc}`, keymap.action);
+}
 
 [..."abcdefghijklmnopqrstuvwxyz"].forEach((letter) => {
   api.removeSearchAlias(letter);
@@ -147,7 +239,7 @@ api.addSearchAlias(
   google.compUrl,
   google.compFn,
   "o",
-  { faviconUrl: google.faviconUrl, skipMaps: true }
+  { faviconUrl: google.faviconUrl, skipMaps: true },
 );
 
 api.addSearchAlias(
@@ -158,7 +250,7 @@ api.addSearchAlias(
   youtube.compUrl,
   youtube.compFn,
   "o",
-  { faviconUrl: youtube.faviconUrl, skipMaps: true }
+  { faviconUrl: youtube.faviconUrl, skipMaps: true },
 );
 
 api.addSearchAlias(
@@ -169,7 +261,7 @@ api.addSearchAlias(
   wikipedia.compUrl,
   wikipedia.compFn,
   "o",
-  { faviconUrl: wikipedia.faviconUrl, skipMaps: true }
+  { faviconUrl: wikipedia.faviconUrl, skipMaps: true },
 );
 
 api.addSearchAlias(
@@ -180,7 +272,7 @@ api.addSearchAlias(
   github.compUrl,
   github.compFn,
   "o",
-  { faviconUrl: github.faviconUrl, skipMaps: true }
+  { faviconUrl: github.faviconUrl, skipMaps: true },
 );
 
 api.addSearchAlias(
@@ -191,7 +283,7 @@ api.addSearchAlias(
   imdb.compUrl,
   imdb.compFn,
   "o",
-  { faviconUrl: imdb.faviconUrl, skipMaps: true }
+  { faviconUrl: imdb.faviconUrl, skipMaps: true },
 );
 
 api.addSearchAlias("r", "radarr", "https://drake.wi1.xyz/radarr/add/new?term=");
@@ -199,7 +291,7 @@ api.addSearchAlias("s", "sonarr", "https://drake.wi1.xyz/sonarr/add/new?term=");
 api.addSearchAlias(
   "c",
   "clash of clans wiki",
-  "https://clashofclans.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query="
+  "https://clashofclans.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query=",
 );
 
 api.aceVimMap("kj", "<Esc>", "insert");
