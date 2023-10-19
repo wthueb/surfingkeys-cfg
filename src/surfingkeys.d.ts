@@ -16,25 +16,25 @@ declare const api: {
     keys: Keys,
     annotation: string,
     jscode: (() => void) | ((key: string) => void),
-    options?: { domain?: RegExp; repeatIgnore?: boolean }
+    options?: { domain?: RegExp; repeatIgnore?: boolean },
   ) => void;
   vmapkey: (
     keys: Keys,
     annotation: string,
     jscode: (() => void) | ((key: string) => void),
-    options?: { domain?: RegExp; repeatIgnore?: boolean }
+    options?: { domain?: RegExp; repeatIgnore?: boolean },
   ) => void;
   imapkey: (
     keys: Keys,
     annotation: string,
     jscode: (() => void) | ((key: string) => void),
-    options?: { domain?: RegExp; repeatIgnore?: boolean }
+    options?: { domain?: RegExp; repeatIgnore?: boolean },
   ) => void;
   map: (
     newKeystroke: Keys,
     oldKeystroke: Keys,
     domain?: RegExp,
-    newAnnotation?: string
+    newAnnotation?: string,
   ) => void;
   unmap: (keystroke: Keys, domain?: RegExp) => void;
   unmapAllExcept: (keystrokes: Keys[], domain?: RegExp) => void;
@@ -42,27 +42,27 @@ declare const api: {
     newKeystroke: Keys,
     oldKeystroke: Keys,
     domain?: RegExp,
-    newAnnotation?: string
+    newAnnotation?: string,
   ) => void;
   iunmap: (keystroke: Keys, domain?: RegExp) => void;
   cmap: (
     newKeystroke: Keys,
     oldKeystroke: Keys,
     domain?: RegExp,
-    newAnnotation?: string
+    newAnnotation?: string,
   ) => void;
   vmap: (
     newKeystroke: Keys,
     oldKeystroke: Keys,
     domain?: RegExp,
-    newAnnotation?: string
+    newAnnotation?: string,
   ) => void;
   vunmap: (keystroke: Keys, domain?: RegExp) => void;
   lmap: (
     newKeystroke: Keys,
     oldKeystroke: Keys,
     domain?: RegExp,
-    newAnnotation?: string
+    newAnnotation?: string,
   ) => void;
   aceVimMap: (lhs: Keys, rhs: Keys, ctx: VimModes) => void;
   addVimMapKey: (...objects: AceKeymap) => void;
@@ -74,21 +74,21 @@ declare const api: {
     suggestionUrl?: string,
     callbackToParseSuggestion?: (
       response: { text: string },
-      request: { query: string; url: string }
+      request: { query: string; url: string },
     ) => void,
     onlyThisSiteKey: Keys = "o",
-    options?: { faviconUrl: string; skipMaps: boolean }
+    options?: { faviconUrl: string; skipMaps: boolean },
   ) => void;
   removeSearchAlias: (
     alias: string,
     searchLeaderKey: Keys = "s",
-    onlyThisSiteKey: Keys = "o"
+    onlyThisSiteKey: Keys = "o",
   ) => void;
   searchSelectedWith: (
     se: string,
     onlyThisSite: boolean = false,
     interactive: boolean = false,
-    alias: string = ""
+    alias: string = "",
   ) => void;
   Clipboard: {
     read: (onReady: (response: string) => void) => void;
@@ -101,7 +101,7 @@ declare const api: {
     create: (
       cssSelector: string | HTMLElement[],
       onHintKey: (element: HTMLElement) => void,
-      attrs?: { active?: boolean; tabbed?: boolean; multipleHits?: boolean }
+      attrs?: { active?: boolean; tabbed?: boolean; multipleHits?: boolean },
     ) => boolean;
     dispatchMouseClick: (element: HTMLElement) => void;
     style: (css: string, mode?: "text") => void;
@@ -122,7 +122,7 @@ declare const api: {
         | "right"
         | "leftmost"
         | "rightmost"
-        | "byRatio"
+        | "byRatio",
     ) => void;
     feedkeys: (keys: Keys) => void;
     jumpVIMark: (mark: string) => void;
@@ -135,7 +135,7 @@ declare const api: {
       element: HTMLElement | string,
       onWrite?: (data: string) => void,
       type?: string,
-      useNeovim: boolean = false
+      useNeovim: boolean = false,
     ) => void;
     openOmnibar: (
       args: {
@@ -153,9 +153,9 @@ declare const api: {
           | "Commands"
           | "OmniQuery"
           | "UserURLs";
-          tabbed?: boolean;
+        tabbed?: boolean;
       },
-      extra?: any
+      extra?: any,
     ) => void;
     registerInlineQuery: (args: {
       url: string | (() => string);
@@ -168,7 +168,7 @@ declare const api: {
   };
   isElementPartiallyInViewport: (
     el: Element,
-    ignoreSize: boolean = false
+    ignoreSize: boolean = false,
   ) => boolean;
   getClickableElements: (selectorString: string, pattern: RegExp) => Element[];
   tabOpenLink: (str: string, simultaneousness: number = 5) => void;
@@ -176,57 +176,105 @@ declare const api: {
   RUNTIME: (
     action: string,
     args?: object,
-    callback?: (result: any) => void
+    callback?: (result: any) => void,
   ) => void;
 };
 
 declare const settings: {
-  showModeStatus: boolean = false;
-  showProxyInStatusBar: boolean = false;
-  richHintsForKeystroke: number = 500;
-  useLocalMarkdownAPI: boolean = true;
-  focusOnSaved: boolean = true;
-  omnibarMaxResults: number = 10;
-  omnibarHistoryCacheSize: number = 100;
-  omnibarPosition: "middle" | "bottom" = "middle";
-  omnibarSuggestion: boolean = false;
-  omnibarSuggestionTimeout: number = 200;
-  focusFirstCandidate: boolean = false;
-  tabsThreshold: number = 100;
-  clickableSelector: string = "";
-  clickablePat: RegExp = new RegExp("/(https?|thunder|magnet)://S+/ig");
-  editableSelector: string = "div.CodeMirror-scroll,div.ace_content";
-  smoothScroll: boolean = true;
-  modeAfterYank: "" | "Caret" | "Normal" = "";
-  scrollStepSize: number = 70;
-  scrollFriction: number = 0;
-  nextLinkRegex: RegExp = /((>>|next)+)/i;
-  prevLinkRegex: RegExp = /((<<|prev(ious)?)+)/i;
-  hintAlign: "left" | "center" | "right" = "center";
-  hintExplicit: boolean = false;
-  hintShiftNonActive: boolean = false;
-  defaultSearchEngine: string = "g";
-  blocklistPattern: RegExp = undefined;
-  focusAfterClosed: "left" | "right" | "last" = "right";
-  repeatThreshold: number = 99;
-  tabsMRUOrder: boolean = true;
-  historyMUOrder: boolean = true;
-  newTabPosition: "left" | "right" | "first" | "last" | "default" = "default";
-  interceptedErrors: string[] = [];
-  enableEmojiInsertion: boolean = false;
-  startToShowEmoji: number = 2;
-  language: string = undefined;
-  stealFocusOnLoad: boolean = true;
-  enableAutoFocus: boolean = true;
-  theme: string = undefined;
-  caseSensitive: boolean = false;
-  smartCase: boolean = true;
-  cursorAtEndOfInput: boolean = true;
-  digitForRepeat: boolean = true;
-  editableBodyCare: boolean = true;
-  ignoredFrameHosts: string[] = ["https://tpc.googlesyndication.com"];
-  aceKeybindings: "vim" | "emacs" = "vim";
-  caretViewport: [number, number, number, number] = null;
-  mouseSelectToQuery: any[] = [];
-  autoSpeakOnInlineQuery: boolean = false;
+  // default false
+  showModeStatus: boolean;
+  // default false
+  showProxyInStatusBar: boolean;
+  // default 500
+  richHintsForKeystroke: number;
+  // default true
+  useLocalMarkdownAPI: boolean;
+  // default true
+  focusOnSaved: boolean;
+  // default 10
+  omnibarMaxResults: number;
+  // default 100
+  omnibarHistoryCacheSize: number;
+  // default "middle"
+  omnibarPosition: "middle" | "bottom";
+  // default false
+  omnibarSuggestion: boolean;
+  // default 200
+  omnibarSuggestionTimeout: number;
+  // default false
+  focusFirstCandidate: boolean;
+  // default 100
+  tabsThreshold: number;
+  // default ""
+  clickableSelector: string;
+  // default /(https?|thunder|magnet)://S+/ig)
+  clickablePat: RegExp;
+  // default "div.CodeMirror-scroll,div.ace_content"
+  editableSelector: string;
+  // default true
+  smoothScroll: boolean;
+  // default ""
+  modeAfterYank: "" | "Caret" | "Normal";
+  // default 70
+  scrollStepSize: number;
+  // default 0
+  scrollFriction: number;
+  // default /((>>|next)+)/i
+  nextLinkRegex: RegExp;
+  // default /((<<|prev(ious)?)+)/i
+  prevLinkRegex: RegExp;
+  // default "center"
+  hintAlign: "left" | "center" | "right";
+  // default false
+  hintExplicit: boolean;
+  // default false
+  hintShiftNonActive: boolean;
+  // default "g"
+  defaultSearchEngine: string;
+  // default undefined
+  blocklistPattern: RegExp;
+  // default "right"
+  focusAfterClosed: "left" | "right" | "last";
+  // default 99
+  repeatThreshold: number;
+  // default true
+  tabsMRUOrder: boolean;
+  // default true
+  historyMUOrder: boolean;
+  // default "default"
+  newTabPosition: "left" | "right" | "first" | "last" | "default";
+  // default []
+  interceptedErrors: string[];
+  // default false
+  enableEmojiInsertion: boolean;
+  // default 2
+  startToShowEmoji: number;
+  // default undefined
+  language: string;
+  // default true
+  stealFocusOnLoad: boolean;
+  // default true
+  enableAutoFocus: boolean;
+  // default undefined
+  theme: string;
+  // default false
+  caseSensitive: boolean;
+  // default true
+  smartCase: boolean;
+  // default true
+  cursorAtEndOfInput: boolean;
+  // default true
+  digitForRepeat: boolean;
+  // default true
+  editableBodyCare: boolean;
+  // default ["https://tpc.googlesyndication.com"]
+  ignoredFrameHosts: string[];
+  // default "vim"
+  aceKeybindings: "vim" | "emacs";
+  // default null
+  caretViewport: [number, number, number, number];
+  // default []
+  mouseSelectToQuery: any[];
+  // default false
+  autoSpeakOnInlineQuery: boolean;
 };
