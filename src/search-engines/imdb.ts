@@ -1,3 +1,5 @@
+import { SearchEngine } from 'src/models';
+
 type ImdbCompResult = {
     d: {
         i: {
@@ -13,10 +15,12 @@ type ImdbCompResult = {
     }[];
 };
 
-export default {
+const engine: SearchEngine = {
+    alias: 'i',
+    name: 'imdb',
     searchUrl: 'https://www.imdb.com/find?q=%s',
     compUrl: 'https://v3.sg.media-imdb.com/suggestion/x/%s.json?includeVideos=0',
-    compFn: (res: { text: string }) =>
+    compFn: (res) =>
         (JSON.parse(res.text) as ImdbCompResult).d.map((item) => {
             let title = item.l;
             if (item.y !== undefined) title += ` (${item.y})`;
@@ -42,3 +46,5 @@ export default {
         }),
     faviconUrl: 'https://www.imdb.com/favicon.ico',
 };
+
+export default engine;
