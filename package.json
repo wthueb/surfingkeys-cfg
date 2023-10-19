@@ -3,7 +3,7 @@
     "module": "src/index.ts",
     "type": "module",
     "scripts": {
-        "build": "tsc -noEmit && esbuild --bundle src/index.ts --outfile=surfingkeys.js",
+        "build": "tsc -noEmit && esbuild --bundle --loader:.css=text src/index.ts --outfile=surfingkeys.js",
         "upload": "npm run build && gh gist edit $(gh gist list | grep surfingkeys.js | awk '{ print $1 }') surfingkeys.js"
     },
     "devDependencies": {

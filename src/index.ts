@@ -1,8 +1,9 @@
-import searchEngines from './search-engines';
-
-import sites from './sites';
+import searchEngines from 'src/search-engines';
+import sites from 'src/sites';
 
 import { Help, Keymap } from 'src/models';
+
+import theme from 'src/css/theme.css';
 
 const { Normal, Front, Hints, Visual, RUNTIME } = api;
 
@@ -264,85 +265,14 @@ settings.hintAlign = 'left';
 settings.focusFirstCandidate = false;
 
 Hints.style(`
-color: #f8f8f2;
-background: #282a36;
-border: none;
-font: bold 10pt "Monaco", "SF Mono", "Lucida Console", monospaced;
+    color: #f8f8f2;
+    background: #282a36;
+    border: none;
+    font: bold 10pt "Monaco", "SF Mono", "Lucida Console", monospaced;
 `);
 
 Visual.style('cursor', 'background: #bd93f9; color: #ff79c6;');
 
 Visual.style('marks', 'background: #f1fa8c;');
 
-settings.theme = `
-  .sk_theme {
-    font: 10pt "Monaco", "SF Mono", "Lucida Console", monospaced;
-    color: #f8f8f2;
-    background: #282a36;
-  }
-
-  /* search engine */
-  .sk_theme #sk_omnibarSearchArea .prompt {
-    color: #ffb86c;
-    font-size: 13pt;
-  }
-
-  .sk_theme #sk_omnibarSearchArea .separator {
-    color: #f1fa8c;
-    font-size: 13pt;
-  }
-
-  .sk_theme #sk_omnibarSearchArea input {
-    color: #f8f8f2;
-    font-size: 13pt;
-  }
-
-  /* result count */
-  .sk_theme #sk_omnibarSearchArea .resultPage {
-    color: #f1fa8c;
-    font-size: 10pt;
-  }
-
-  .sk_theme #sk_omnibarSearchResult ul li {
-    background: #282a36 !important;
-  }
-
-  .sk_theme #sk_omnibarSearchResult ul li.focused {
-    background: #44475a !important;
-  }
-
-  .sk_theme #sk_omnibarSearchResult ul li .url {
-    color: #bd93f9;
-    font-weight: normal;
-  }
-
-  /* matching text */
-  .sk_theme #sk_omnibarSearchResult .omnibar_highlight {
-    color: #ff79c6;
-  }
-
-  .sk_theme #sk_omnibarSearchResult .omnibar_folder {
-    color: #ffb86c;
-  }
-
-  .sk_theme #sk_omnibarSearchResult .omnibar_timestamp {
-    color: #6272a4;
-  }
-
-  .sk_theme #sk_omnibarSearchResult .omnibar_visitcount {
-    color: #6272a4;
-  }
-
-  .sk_theme input#sk_find {
-    color: #f8f8f2;
-    font-size: 13pt;
-  }
-
-  .sk_theme .annotation {
-    color: #f8f8f2;
-  }
-
-  #sk_status {
-    font-size: 13pt;
-  }
-`;
+settings.theme = theme;
