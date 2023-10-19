@@ -3,14 +3,12 @@
     "module": "src/index.ts",
     "type": "module",
     "scripts": {
-        "build": "bun build src/index.ts --outfile=surfingkeys.js",
+        "build": "tsc -noEmit && esbuild src/index.ts --outfile=surfingkeys.js",
         "upload": "npm run build && gh gist edit $(gh gist list | grep surfingkeys.js | awk '{ print $1 }') surfingkeys.js"
     },
     "devDependencies": {
-        "bun-types": "latest",
-        "prettier": "^3.0.3"
-    },
-    "peerDependencies": {
-        "typescript": "^5.0.0"
+        "esbuild": "^0.19.5",
+        "prettier": "^3.0.3",
+        "typescript": "^5.2.2"
     }
 }

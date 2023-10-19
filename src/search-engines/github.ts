@@ -1,3 +1,5 @@
+import { SearchEngine } from 'src/models';
+
 type GithubCompResult = {
     items: {
         full_name: string;
@@ -6,10 +8,12 @@ type GithubCompResult = {
     }[];
 };
 
-export default {
+const engine: SearchEngine = {
+    alias: 'gh',
+    name: 'github',
     searchUrl: 'https://github.com/search?q=%s',
     compUrl: 'https://api.github.com/search/repositories?sort=stars&order=desc&q=%s',
-    compFn: (res: { text: string }) =>
+    compFn: (res) =>
         (JSON.parse(res.text) as GithubCompResult).items.map((item) => {
             let title = '';
             if (item.stargazers_count) {
@@ -27,3 +31,5 @@ export default {
         }),
     faviconUrl: 'https://github.com/favicon.ico',
 };
+
+export default engine;

@@ -1,8 +1,4 @@
-import imdb from './search-engines/imdb';
-import github from './search-engines/github';
-import google from './search-engines/google';
-import wikipedia from './search-engines/wikipedia';
-import youtube from './search-engines/youtube';
+import searchEngines from './search-engines';
 
 import youtubeSite from './sites/youtube';
 
@@ -229,36 +225,18 @@ for (const keymap of keymaps) {
     api.removeSearchAlias(letter);
 });
 
-api.addSearchAlias('g', 'google', google.searchUrl, 's', google.compUrl, google.compFn, 'o', {
-    faviconUrl: google.faviconUrl,
-    skipMaps: true,
-});
-
-api.addSearchAlias('y', 'youtube', youtube.searchUrl, 's', youtube.compUrl, youtube.compFn, 'o', {
-    faviconUrl: youtube.faviconUrl,
-    skipMaps: true,
-});
-
-api.addSearchAlias(
-    'wiki',
-    'wikipedia',
-    wikipedia.searchUrl,
-    's',
-    wikipedia.compUrl,
-    wikipedia.compFn,
-    'o',
-    { faviconUrl: wikipedia.faviconUrl, skipMaps: true },
-);
-
-api.addSearchAlias('gh', 'github', github.searchUrl, 's', github.compUrl, github.compFn, 'o', {
-    faviconUrl: github.faviconUrl,
-    skipMaps: true,
-});
-
-api.addSearchAlias('i', 'imdb', imdb.searchUrl, 's', imdb.compUrl, imdb.compFn, 'o', {
-    faviconUrl: imdb.faviconUrl,
-    skipMaps: true,
-});
+for (const searchEngine of searchEngines) {
+    api.addSearchAlias(
+        searchEngine.alias,
+        searchEngine.name,
+        searchEngine.searchUrl,
+        's',
+        searchEngine.compUrl,
+        searchEngine.compFn,
+        'o',
+        { faviconUrl: searchEngine.faviconUrl, skipMaps: true },
+    );
+}
 
 api.addSearchAlias('r', 'radarr', 'https://drake.wi1.xyz/radarr/add/new?term=');
 api.addSearchAlias('s', 'sonarr', 'https://drake.wi1.xyz/sonarr/add/new?term=');

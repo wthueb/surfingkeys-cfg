@@ -1,4 +1,5 @@
 import config from 'config.json';
+import { SearchEngine } from 'src/models';
 
 type Thumbnail = {
     url: string;
@@ -51,10 +52,12 @@ type YoutubeCompletionResult = {
     regionCode: string;
 };
 
-export default {
+const engine: SearchEngine = {
+    alias: 'y',
+    name: 'youtube',
     searchUrl: 'https://www.youtube.com/results?search_query=%s',
     compUrl: `https://www.googleapis.com/youtube/v3/search?maxResults=20&part=snippet&type=video,channel&key=${config.googleKey}&safeSearch=none&q=%s`,
-    compFn: (res: { text: string }) =>
+    compFn: (res) =>
         (JSON.parse(res.text) as YoutubeCompletionResult).items.map((item) => {
             const thumb = item.snippet.thumbnails.default;
 
@@ -65,45 +68,44 @@ export default {
                 case 'youtube#channel':
                     url = `https://youtube.com/channel/${item.id.channelId}`;
                     html = `
-            <div style="display: flex; flex-direction: row">
-              <img
-                style="max-width: 160px; height: 90px; margin-right: 0.8em"
-                alt="thumbnail"
-                src="${thumb.url}">
-              <div>
-                <div class="title">
-                  ${item.snippet.channelTitle}
-                </div>
-                <div>
-                  <div>${item.snippet.description}</div>
-                  <div class="url">channel</div>
-                </div>
-              </div>
-            </div>`;
+                        <div style="display: flex; flex-direction: row">
+                            <img
+                                style="max-width: 160px; height: 90px; margin-right: 0.8em"
+                                alt="thumbnail"
+                                src="${thumb.url}">
+                            <div>
+                                <div class="title">
+                                    ${item.snippet.channelTitle}
+                                </div>
+                                <div>
+                                    <div>${item.snippet.description}</div>
+                                    <div class="url">channel</div>
+                                </div>
+                            </div>
+                        </div>`;
                     break;
                 case 'youtube#video':
                     url = `https://www.youtube.com/watch?v=${item.id.videoId}`;
                     const date = new Date(item.snippet.publishedAt).toLocaleDateString();
                     html = `
-            <div style="display: flex; flex-direction: row">
-              <img
-                style="max-width: 160px; height: 90px; margin-right: 0.8em"
-                alt="thumbnail"
-                src="${thumb.url}">
-              <div>
-                <div class="title">
-                  ${item.snippet.title}
-                </div>
-                <div>
-                  <div>${item.snippet.description}</div>
-                  <div class="url">
-                    video by ${item.snippet.channelTitle}
-                    <span class="omnibar_timestamp"># ${date}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
+                        <div style="display: flex; flex-direction: row">
+                            <img
+                                style="max-width: 160px; height: 90px; margin-right: 0.8em"
+                                alt="thumbnail"
+                                src="${thumb.url}">
+                            <div>
+                                <div class="title">
+                                    ${item.snippet.title}
+                                </div>
+                                <div>
+                                    <div>${item.snippet.description}</div>
+                                    <div class="url">
+                                        video by ${item.snippet.channelTitle}
+                                        <span class="omnibar_timestamp"># ${date}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
                     break;
                 default:
                     html = '<div>something is broken, item printed to console</div>';
@@ -115,3 +117,5 @@ export default {
         }),
     faviconUrl: 'https://www.youtube.com/favicon.ico',
 };
+
+export default engine;
