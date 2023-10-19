@@ -1,6 +1,6 @@
 import searchEngines from './search-engines';
 
-import youtubeSite from './sites/youtube';
+import sites from './sites';
 
 import { Help, Keymap } from 'src/models';
 
@@ -67,7 +67,17 @@ let keymaps: Keymap[] = [
     {
         keys: 'a',
         action: () => {
-            const timeout = 1500;
+            const timeout = 2000;
+            Normal.passThrough(timeout);
+            Front.showBanner('temporary passthrough enabled', timeout);
+        },
+        desc: 'temporary passthrough',
+        helpClass: Help.help,
+    },
+    {
+        keys: 'p',
+        action: () => {
+            const timeout = 2000;
             Normal.passThrough(timeout);
             Front.showBanner('temporary passthrough enabled', timeout);
         },
@@ -214,11 +224,13 @@ let keymaps: Keymap[] = [
     },
 ];
 
-keymaps = keymaps.concat(youtubeSite.keys);
+for (const site of sites) {
+    keymaps = keymaps.concat(site.keys);
+}
 
 for (const keymap of keymaps) {
     const helpClass = keymap.helpClass ?? Help.misc;
-    api.mapkey(keymap.keys, `#${helpClass}${keymap.desc}`, keymap.action);
+    api.mapkey(keymap.keys, `#${helpClass}${keymap.desc}`, keymap.action, keymap.opts);
 }
 
 [...'abcdefghijklmnopqrstuvwxyz'].forEach((letter) => {
