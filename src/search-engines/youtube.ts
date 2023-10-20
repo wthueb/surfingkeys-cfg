@@ -65,7 +65,7 @@ const engine: SearchEngine = {
             let url: string = '';
 
             switch (item.id.kind) {
-                case 'youtube#channel':
+                case 'youtube#channel': {
                     url = `https://youtube.com/channel/${item.id.channelId}`;
                     html = `
                         <div style="display: flex; flex-direction: row">
@@ -84,7 +84,8 @@ const engine: SearchEngine = {
                             </div>
                         </div>`;
                     break;
-                case 'youtube#video':
+                }
+                case 'youtube#video': {
                     url = `https://www.youtube.com/watch?v=${item.id.videoId}`;
                     const date = new Date(item.snippet.publishedAt).toLocaleDateString();
                     html = `
@@ -107,10 +108,12 @@ const engine: SearchEngine = {
                             </div>
                         </div>`;
                     break;
-                default:
+                }
+                default: {
                     html = '<div>something is broken, item printed to console</div>';
                     console.error(item);
                     break;
+                }
             }
 
             return { html, props: { url } };
