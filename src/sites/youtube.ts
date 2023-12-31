@@ -14,7 +14,8 @@ const config: SiteConfig = {
         },
         {
             keys: 'a',
-            action: () => sendKey('j', 'KeyJ', 74, 106),
+            // action: () => sendKey('j', 'KeyJ', 74, 106),
+            action: () => sendKey('ArrowLeft', 'ArrowLeft', 37, 37),
             desc: 'go back 10 seconds',
         },
         {
@@ -24,7 +25,8 @@ const config: SiteConfig = {
         },
         {
             keys: 'd',
-            action: () => sendKey('l', 'KeyL', 76, 108),
+            // action: () => sendKey('l', 'KeyL', 76, 108),
+            action: () => sendKey('ArrowRight', 'ArrowRight', 39, 39),
             desc: 'go forward 10 seconds',
         },
     ],
