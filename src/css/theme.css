@@ -1,74 +1,74 @@
 .sk_theme {
-    font:
-        10pt 'Monaco',
-        'SF Mono',
-        'Lucida Console',
-        monospaced;
-    color: #f8f8f2;
-    background: #282a36;
+  font:
+    10pt 'Monaco',
+    'SF Mono',
+    'Lucida Console',
+    monospaced;
+  color: #f8f8f2;
+  background: #282a36;
 }
 
 /* search engine */
 .sk_theme #sk_omnibarSearchArea .prompt {
-    color: #ffb86c;
-    font-size: 13pt;
+  color: #ffb86c;
+  font-size: 13pt;
 }
 
 .sk_theme #sk_omnibarSearchArea .separator {
-    color: #f1fa8c;
-    font-size: 13pt;
+  color: #f1fa8c;
+  font-size: 13pt;
 }
 
 .sk_theme #sk_omnibarSearchArea input {
-    color: #f8f8f2;
-    font-size: 13pt;
+  color: #f8f8f2;
+  font-size: 13pt;
 }
 
 /* result count */
 .sk_theme #sk_omnibarSearchArea .resultPage {
-    color: #f1fa8c;
-    font-size: 10pt;
+  color: #f1fa8c;
+  font-size: 10pt;
 }
 
 .sk_theme #sk_omnibarSearchResult ul li {
-    background: #282a36 !important;
+  background: #282a36 !important;
 }
 
 .sk_theme #sk_omnibarSearchResult ul li.focused {
-    background: #44475a !important;
+  background: #44475a !important;
 }
 
 .sk_theme #sk_omnibarSearchResult ul li .url {
-    color: #bd93f9;
-    font-weight: normal;
+  color: #bd93f9;
+  font-weight: normal;
 }
 
 /* matching text */
 .sk_theme #sk_omnibarSearchResult .omnibar_highlight {
-    color: #ff79c6;
+  color: #ff79c6;
 }
 
 .sk_theme #sk_omnibarSearchResult .omnibar_folder {
-    color: #ffb86c;
+  color: #ffb86c;
 }
 
 .sk_theme #sk_omnibarSearchResult .omnibar_timestamp {
-    color: #6272a4;
+  color: #6272a4;
 }
 
 .sk_theme #sk_omnibarSearchResult .omnibar_visitcount {
-    color: #6272a4;
+  color: #6272a4;
 }
 
 .sk_theme input#sk_find {
-    color: #f8f8f2;
-    font-size: 13pt;
+  color: #f8f8f2;
+  font-size: 13pt;
 }
 
 .sk_theme .annotation {
-    color: #f8f8f2;
+  color: #f8f8f2;
 }
 
 #sk_status {
-    font-size: 13pt;
+  font-size: 13pt;
 }
