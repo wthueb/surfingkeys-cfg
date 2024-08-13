@@ -1,4 +1,5 @@
 import { SearchEngine } from 'src/models';
+import { html } from 'src/utils';
 
 type GithubCompResult = {
   items: {
@@ -21,13 +22,12 @@ const engine: SearchEngine = {
       }
       title += item.full_name;
 
-      const html = `
-        <div>
-          <div style="font-weight: bold">${title}</div>
-          <div style="opacity: 0.7; line-height: 1.3em">${item.html_url}</div>
-        </div>`;
+      const markup = html` <div>
+        <div style="font-weight: bold">${title}</div>
+        <div style="opacity: 0.7; line-height: 1.3em">${item.html_url}</div>
+      </div>`;
 
-      return { html, props: { url: item.html_url } };
+      return { html: markup, props: { url: item.html_url } };
     }),
   faviconUrl: 'https://github.com/favicon.ico',
 };

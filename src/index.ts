@@ -4,6 +4,7 @@ import sites from 'src/sites';
 import { Help, Keymap } from 'src/models';
 
 import theme from 'src/css/theme.css';
+import { css } from './utils';
 
 const { Normal, Front, Hints, Visual, RUNTIME } = api;
 
@@ -262,15 +263,30 @@ api.aceVimMap('kj', '<Esc>', 'insert');
 settings.hintAlign = 'left';
 settings.focusFirstCandidate = false;
 
-Hints.style(`
-    color: #f8f8f2;
-    background: #282a36;
-    border: none;
-    font: bold 10pt 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
+Hints.style(css`
+  color: #f8f8f2;
+  background: #282a36;
+  border: none;
+  font:
+    bold 10pt 'Monaco',
+    'SF Mono',
+    'Lucida Console',
+    monospaced;
 `);
 
-Visual.style('cursor', 'background: #bd93f9; color: #ff79c6;');
+Visual.style(
+  'cursor',
+  css`
+    background: #bd93f9;
+    color: #ff79c6;
+  `,
+);
 
-Visual.style('marks', 'background: #f1fa8c;');
+Visual.style(
+  'marks',
+  css`
+    background: #f1fa8c;
+  `,
+);
 
 settings.theme = theme;

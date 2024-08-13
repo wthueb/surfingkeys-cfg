@@ -30,3 +30,11 @@ export function sendKey(key: string, code: string, keydownCode: number, keypress
     }, delay);
   }, delay);
 }
+
+export function html(strings: TemplateStringsArray, ...values: string[]) {
+  return String.raw({ raw: strings }, ...values);
+}
+
+export function css(strings: TemplateStringsArray, ...values: string[]) {
+  return String.raw({ raw: strings }, ...values);
+}

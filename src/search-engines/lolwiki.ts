@@ -1,4 +1,5 @@
 import { SearchEngine } from 'src/models';
+import { html } from 'src/utils';
 
 type CompResult = {
   query: string;
@@ -24,18 +25,17 @@ const engine: SearchEngine = {
           const serialized = suggestion.replace(/ /g, '_');
           const url = `https://leagueoflegends.fandom.com/wiki/${serialized}`;
 
-          const html = `
-            <div class="result">
-                <img class="thumb" alt="thumbnail" src="${data.images[id]}">
-                <div>
-                    <div class="title">${suggestion}</div>
-                    <div>
-                        <div class="url">${url}</div>
-                    </div>
-                </div>
-            </div>`;
+          const markup = html` <div class="result">
+            <img class="thumb" alt="thumbnail" src="${data.images[id]!}" />
+            <div>
+              <div class="title">${suggestion}</div>
+              <div>
+                <div class="url">${url}</div>
+              </div>
+            </div>
+          </div>`;
 
-          return { html, props: { url } };
+          return { html: markup, props: { url } };
         })
     );
   },

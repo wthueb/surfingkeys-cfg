@@ -1,4 +1,5 @@
 import { SearchEngine } from 'src/models';
+import { html } from 'src/utils';
 
 type ImdbCompResult = {
   d: {
@@ -32,19 +33,18 @@ const engine: SearchEngine = {
         else if (item.id.startsWith('nm')) url += `/name/${item.id}/`;
         else throw new Error(`unknown imdb id: ${item}`);
 
-        const html = `
-          <div class="result">
-            <img class="thumb" alt="thumbnail" src="${item.i.imageUrl}">
+        const markup = html` <div class="result">
+          <img class="thumb" alt="thumbnail" src="${item.i.imageUrl}" />
+          <div>
+            <div class="title">${title}</div>
             <div>
-              <div class="title">${title}</div>
-              <div>
-                <div>${item.s}</div>
-                <div class="url">${url}</div>
-              </div>
+              <div>${item.s}</div>
+              <div class="url">${url}</div>
             </div>
-          </div>`;
+          </div>
+        </div>`;
 
-        return { html, props: { url } };
+        return { html: markup, props: { url } };
       }),
   faviconUrl: 'https://www.imdb.com/favicon.ico',
 };
