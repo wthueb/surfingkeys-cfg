@@ -1,6 +1,7 @@
 import { SearchEngine } from 'src/models';
 
 import config from 'config.json';
+import { html } from 'src/utils';
 
 type Thumbnail = {
   url: string;
@@ -62,56 +63,50 @@ const engine: SearchEngine = {
     (JSON.parse(res.text) as YoutubeCompletionResult).items.map((item) => {
       const thumb = item.snippet.thumbnails.default;
 
-      let html: string = '';
-      let url: string = '';
+      let markup = '';
+      let url = '';
 
       switch (item.id.kind) {
         case 'youtube#channel': {
           url = `https://youtube.com/channel/${item.id.channelId}`;
-          html = `
-            <div class="result">
-                <img class="thumb" alt="thumbnail" src="${thumb.url}">
-                <div>
-                    <div class="title">
-                        ${item.snippet.channelTitle}
-                    </div>
-                    <div>
-                        <div>${item.snippet.description}</div>
-                        <div class="url">channel</div>
-                    </div>
-                </div>
-            </div>`;
+          markup = html` <div class="result">
+            <img class="thumb" alt="thumbnail" src="${thumb.url}" />
+            <div>
+              <div class="title">${item.snippet.channelTitle}</div>
+              <div>
+                <div>${item.snippet.description}</div>
+                <div class="url">channel</div>
+              </div>
+            </div>
+          </div>`;
           break;
         }
         case 'youtube#video': {
           url = `https://www.youtube.com/watch?v=${item.id.videoId}`;
           const date = new Date(item.snippet.publishedAt).toLocaleDateString();
-          html = `
-            <div class="result">
-                <img class="thumb" alt="thumbnail" src="${thumb.url}">
-                <div>
-                    <div class="title">
-                        ${item.snippet.title}
-                    </div>
-                    <div>
-                        <div>${item.snippet.description}</div>
-                        <div class="url">
-                            <div>video by ${item.snippet.channelTitle}</div>
-                            <span class="omnibar_timestamp"># ${date}</span>
-                        </div>
-                    </div>
+          markup = html` <div class="result">
+            <img class="thumb" alt="thumbnail" src="${thumb.url}" />
+            <div>
+              <div class="title">${item.snippet.title}</div>
+              <div>
+                <div>${item.snippet.description}</div>
+                <div class="url">
+                  <div>video by ${item.snippet.channelTitle}</div>
+                  <span class="omnibar_timestamp"># ${date}</span>
                 </div>
-            </div>`;
+              </div>
+            </div>
+          </div>`;
           break;
         }
         default: {
-          html = '<div>something is broken, item printed to console</div>';
+          markup = html`<div>something is broken, item printed to console</div>`;
           console.error(item);
           break;
         }
       }
 
-      return { html, props: { url } };
+      return { html: markup, props: { url } };
     }),
   faviconUrl: 'https://www.youtube.com/favicon.ico',
 };

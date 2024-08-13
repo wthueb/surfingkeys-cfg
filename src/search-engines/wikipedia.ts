@@ -1,4 +1,5 @@
 import { SearchEngine } from 'src/models';
+import { html } from 'src/utils';
 
 type WikipediaCompResult = {
   query: {
@@ -31,19 +32,18 @@ const engine: SearchEngine = {
 
         const descriptionElem = page.description ? `<div>${page.description}</div>` : '';
 
-        const html = `
-          <div class="result">
-              <img class="thumb" alt="thumbnail" src="${img}">
-              <div>
-                  <div class="title">${page.title}</div>
-                  <div>
-                      ${descriptionElem}
-                      <div class="url">${page.fullurl}</div>
-                  </div>
-              </div>
-          </div>`;
+        const markup = html` <div class="result">
+          <img class="thumb" alt="thumbnail" src="${img}" />
+          <div>
+            <div class="title">${page.title}</div>
+            <div>
+              ${descriptionElem}
+              <div class="url">${page.fullurl}</div>
+            </div>
+          </div>
+        </div>`;
 
-        return { html, props: { url: page.fullurl } };
+        return { html: markup, props: { url: page.fullurl } };
       }),
   faviconUrl: 'https://en.wikipedia.org/favicon.ico',
 };
