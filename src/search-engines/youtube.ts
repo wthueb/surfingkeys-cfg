@@ -1,5 +1,6 @@
-import config from 'config.json';
 import { SearchEngine } from 'src/models';
+
+import config from 'config.json';
 
 type Thumbnail = {
   url: string;
