@@ -33,11 +33,8 @@ const engine: SearchEngine = {
         else throw new Error(`unknown imdb id: ${item}`);
 
         const html = `
-          <div style="display: flex; flex-direction: row">
-            <img
-              style="max-width: 160px; height: 90px; margin-right: 0.8em"
-              alt="thumbnail"
-              src="${item.i.imageUrl}">
+          <div class="result">
+            <img class="thumb" alt="thumbnail" src="${item.i.imageUrl}">
             <div>
               <div class="title">${title}</div>
               <div>

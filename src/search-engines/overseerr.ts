@@ -24,11 +24,8 @@ const engine: SearchEngine = {
       const url = `${config.overseerrUrl}/${item.mediaType}/${item.id}`;
 
       const html = `
-        <div style="display: flex; flex-direction: row">
-          <img
-            style="max-width: 160px; height: 90px; margin-right: 0.8em"
-            alt="thumbnail"
-            src="${posterUrl}">
+        <div class="result">
+          <img class="thumb" alt="thumbnail" src="${posterUrl}">
           <div>
             <div class="title">${item.title ?? item.name}</div>
             <div>

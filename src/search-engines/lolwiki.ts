@@ -25,11 +25,8 @@ const engine: SearchEngine = {
           const url = `https://leagueoflegends.fandom.com/wiki/${serialized}`;
 
           const html = `
-            <div style="display: flex; flex-direction: row">
-                <img
-                    style="max-width: 160px; height: 90px; margin-right: 0.8em"
-                    alt="thumbnail"
-                    src="${data.images[id]}">
+            <div class="result">
+                <img class="thumb" alt="thumbnail" src="${data.images[id]}">
                 <div>
                     <div class="title">${suggestion}</div>
                     <div>
