@@ -32,11 +32,8 @@ const engine: SearchEngine = {
         const descriptionElem = page.description ? `<div>${page.description}</div>` : '';
 
         const html = `
-          <div style="display: flex; flex-direction: row">
-              <img
-                  style="max-width: 160px; height: 90px; margin-right: 0.8em"
-                  alt="thumbnail"
-                  src="${img}">
+          <div class="result">
+              <img class="thumb" alt="thumbnail" src="${img}">
               <div>
                   <div class="title">${page.title}</div>
                   <div>

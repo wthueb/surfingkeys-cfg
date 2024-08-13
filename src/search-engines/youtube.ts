@@ -69,45 +69,39 @@ const engine: SearchEngine = {
         case 'youtube#channel': {
           url = `https://youtube.com/channel/${item.id.channelId}`;
           html = `
-                        <div style="display: flex; flex-direction: row">
-                            <img
-                                style="max-width: 160px; height: 90px; margin-right: 0.8em"
-                                alt="thumbnail"
-                                src="${thumb.url}">
-                            <div>
-                                <div class="title">
-                                    ${item.snippet.channelTitle}
-                                </div>
-                                <div>
-                                    <div>${item.snippet.description}</div>
-                                    <div class="url">channel</div>
-                                </div>
-                            </div>
-                        </div>`;
+            <div class="result">
+                <img class="thumb" alt="thumbnail" src="${thumb.url}">
+                <div>
+                    <div class="title">
+                        ${item.snippet.channelTitle}
+                    </div>
+                    <div>
+                        <div>${item.snippet.description}</div>
+                        <div class="url">channel</div>
+                    </div>
+                </div>
+            </div>`;
           break;
         }
         case 'youtube#video': {
           url = `https://www.youtube.com/watch?v=${item.id.videoId}`;
           const date = new Date(item.snippet.publishedAt).toLocaleDateString();
           html = `
-                        <div style="display: flex; flex-direction: row">
-                            <img
-                                style="max-width: 160px; height: 90px; margin-right: 0.8em"
-                                alt="thumbnail"
-                                src="${thumb.url}">
-                            <div>
-                                <div class="title">
-                                    ${item.snippet.title}
-                                </div>
-                                <div>
-                                    <div>${item.snippet.description}</div>
-                                    <div class="url">
-                                        video by ${item.snippet.channelTitle}
-                                        <span class="omnibar_timestamp"># ${date}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`;
+            <div class="result">
+                <img class="thumb" alt="thumbnail" src="${thumb.url}">
+                <div>
+                    <div class="title">
+                        ${item.snippet.title}
+                    </div>
+                    <div>
+                        <div>${item.snippet.description}</div>
+                        <div class="url">
+                            <div>video by ${item.snippet.channelTitle}</div>
+                            <span class="omnibar_timestamp"># ${date}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
           break;
         }
         default: {

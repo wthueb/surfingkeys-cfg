@@ -38,7 +38,18 @@
   background: #44475a !important;
 }
 
-.sk_theme #sk_omnibarSearchResult ul li .url {
+.sk_theme #sk_omnibarSearchResult .result {
+  display: flex;
+  flex-direction: row;
+}
+
+.sk_theme #sk_omnibarSearchResult .thumb {
+  max-width: 160px;
+  height: 90px;
+  margin-right: 0.8em;
+}
+
+.sk_theme #sk_omnibarSearchResult .url {
   color: #bd93f9;
   font-weight: normal;
 }
