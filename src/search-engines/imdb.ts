@@ -3,7 +3,7 @@ import { html } from 'src/utils';
 
 type ImdbCompResult = {
   d: {
-    i: {
+    i?: {
       height: number;
       imageUrl: string;
       width: number;
@@ -19,7 +19,7 @@ type ImdbCompResult = {
 const engine: SearchEngine = {
   alias: 'i',
   name: 'imdb',
-  searchUrl: 'https://www.imdb.com/find?q=%s',
+  searchUrl: 'https://www.imdb.com/find/?q=%s',
   compUrl: 'https://v3.sg.media-imdb.com/suggestion/x/%s.json?includeVideos=0',
   compFn: (res) =>
     (JSON.parse(res.text) as ImdbCompResult).d
@@ -33,8 +33,12 @@ const engine: SearchEngine = {
         else if (item.id.startsWith('nm')) url += `/name/${item.id}/`;
         else throw new Error(`unknown imdb id: ${item}`);
 
+        const image = item.i
+          ? html`<img class="thumb" alt="thumbnail" src="${item.i.imageUrl}" />`
+          : '';
+
         const markup = html` <div class="result">
-          <img class="thumb" alt="thumbnail" src="${item.i.imageUrl}" />
+          ${image}
           <div>
             <div class="title">${title}</div>
             <div>
