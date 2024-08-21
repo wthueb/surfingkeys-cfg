@@ -1,5 +1,5 @@
 import { SearchEngine } from 'src/models';
-import { html } from 'src/utils';
+import { searchResult } from 'src/utils';
 
 type WikipediaCompResult = {
   query: {
@@ -30,18 +30,12 @@ const engine: SearchEngine = {
       .map((page) => {
         const img = page.thumbnail?.source ?? defaultImageSvg;
 
-        const descriptionElem = page.description ? `<div>${page.description}</div>` : '';
-
-        const markup = html` <div class="result">
-          <img class="thumb" alt="thumbnail" src="${img}" />
-          <div>
-            <div class="title">${page.title}</div>
-            <div>
-              ${descriptionElem}
-              <div class="url">${page.fullurl}</div>
-            </div>
-          </div>
-        </div>`;
+        const markup = searchResult({
+          title: page.title,
+          description: page.description,
+          url: page.fullurl,
+          img,
+        });
 
         return { html: markup, props: { url: page.fullurl } };
       }),
