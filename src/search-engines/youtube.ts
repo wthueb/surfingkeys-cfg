@@ -1,7 +1,7 @@
 import { SearchEngine } from 'src/models';
 
 import config from 'config.json';
-import { html } from 'src/utils';
+import { html, searchResult } from 'src/utils';
 
 type Thumbnail = {
   url: string;
@@ -69,34 +69,24 @@ const engine: SearchEngine = {
       switch (item.id.kind) {
         case 'youtube#channel': {
           url = `https://youtube.com/channel/${item.id.channelId}`;
-          markup = html` <div class="result">
-            <img class="thumb" alt="thumbnail" src="${thumb.url}" />
-            <div>
-              <div class="title">${item.snippet.channelTitle}</div>
-              <div>
-                <div>${item.snippet.description}</div>
-                <div class="url">channel</div>
-              </div>
-            </div>
-          </div>`;
+          markup = searchResult({
+            title: item.snippet.channelTitle,
+            description: item.snippet.description,
+            url: 'channel',
+            img: thumb.url,
+          });
           break;
         }
         case 'youtube#video': {
           url = `https://www.youtube.com/watch?v=${item.id.videoId}`;
           const date = new Date(item.snippet.publishedAt).toLocaleDateString();
-          markup = html` <div class="result">
-            <img class="thumb" alt="thumbnail" src="${thumb.url}" />
-            <div>
-              <div class="title">${item.snippet.title}</div>
-              <div>
-                <div>${item.snippet.description}</div>
-                <div class="url">
-                  <div>video by ${item.snippet.channelTitle}</div>
-                  <span class="omnibar_timestamp"># ${date}</span>
-                </div>
-              </div>
-            </div>
-          </div>`;
+          markup = searchResult({
+            title: item.snippet.title,
+            description: item.snippet.description,
+            url: `video by ${item.snippet.channelTitle}`,
+            img: thumb.url,
+            timestamp: date,
+          });
           break;
         }
         default: {

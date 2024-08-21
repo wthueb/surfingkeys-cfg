@@ -1,5 +1,5 @@
 import { SearchEngine } from 'src/models';
-import { html } from 'src/utils';
+import { searchResult } from 'src/utils';
 
 type ImdbCompResult = {
   d: {
@@ -33,20 +33,12 @@ const engine: SearchEngine = {
         else if (item.id.startsWith('nm')) url += `/name/${item.id}/`;
         else throw new Error(`unknown imdb id: ${item}`);
 
-        const image = item.i
-          ? html`<img class="thumb" alt="thumbnail" src="${item.i.imageUrl}" />`
-          : '';
-
-        const markup = html` <div class="result">
-          ${image}
-          <div>
-            <div class="title">${title}</div>
-            <div>
-              <div>${item.s}</div>
-              <div class="url">${url}</div>
-            </div>
-          </div>
-        </div>`;
+        const markup = searchResult({
+          title,
+          description: item.s,
+          url,
+          img: item.i?.imageUrl,
+        });
 
         return { html: markup, props: { url } };
       }),
