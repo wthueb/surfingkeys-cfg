@@ -235,9 +235,9 @@ for (const keymap of keymaps) {
   api.mapkey(keymap.keys, `#${helpClass}${keymap.desc}`, keymap.action, keymap.opts);
 }
 
-[...'abcdefghijklmnopqrstuvwxyz'].forEach((letter) => {
+for (const letter of 'abcdefghijklmnopqrstuvwxyz') {
   api.removeSearchAlias(letter);
-});
+}
 
 for (const searchEngine of searchEngines) {
   api.addSearchAlias(

@@ -1,4 +1,4 @@
-export function sendKey(key: string, code: string, keydownCode: number, keypressCode: number) {
+export function sendKey(key: string, code: string, keyCode: number, delayMs: number = 10) {
   const event: KeyboardEventInit = {
     key,
     code,
@@ -8,27 +8,15 @@ export function sendKey(key: string, code: string, keydownCode: number, keypress
     view: window,
   };
 
-  const delay = 10; // ms
-
-  const keydownEvent = { ...event, keyCode: keydownCode, which: keydownCode };
+  const keydownEvent = { ...event, keyCode, which: keyCode };
 
   const keydown = new KeyboardEvent('keydown', keydownEvent);
   document.body.dispatchEvent(keydown);
 
   setTimeout(() => {
-    const keypress = new KeyboardEvent('keypress', {
-      ...event,
-      keyCode: keypressCode,
-      charCode: keypressCode,
-      which: keypressCode,
-    });
-    document.body.dispatchEvent(keypress);
-
-    setTimeout(() => {
-      const keyup = new KeyboardEvent('keyup', keydownEvent);
-      document.body.dispatchEvent(keyup);
-    }, delay);
-  }, delay);
+    const keyup = new KeyboardEvent('keyup', keydownEvent);
+    document.body.dispatchEvent(keyup);
+  }, delayMs);
 }
 
 export function html(strings: TemplateStringsArray, ...values: string[]) {
