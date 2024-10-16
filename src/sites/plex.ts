@@ -1,35 +1,31 @@
 import { SiteConfig } from 'src/models';
 import { sendKey } from 'src/utils';
+import config from 'config.json';
 
-const config: SiteConfig = {
-  domain: /youtube\.com/i,
+const c: SiteConfig = {
+  domain: new RegExp(config.plexDomainRegex, 'i'),
   keys: [
     {
       keys: 'F',
-      action: () => {
-        const elem = document.querySelector('.ytp-fullscreen-button') as HTMLElement;
-        elem.click();
-      },
+      action: () => sendKey('f', 'KeyF', 70),
       desc: 'toggle fullscreen',
     },
     {
       keys: 'a',
-      // action: () => sendKey('j', 'KeyJ', 74, 106),
       action: () => sendKey('ArrowLeft', 'ArrowLeft', 37),
       desc: 'go back 10 seconds',
     },
     {
       keys: 's',
-      action: () => sendKey('k', 'KeyK', 75),
+      action: () => sendKey(' ', 'Space', 32),
       desc: 'play/pause',
     },
     {
       keys: 'd',
-      // action: () => sendKey('l', 'KeyL', 76, 108),
       action: () => sendKey('ArrowRight', 'ArrowRight', 39),
-      desc: 'go forward 10 seconds',
+      desc: 'go forward 30 seconds',
     },
   ],
 };
 
-export default config;
+export default c;

@@ -6,7 +6,7 @@ const config: SiteConfig = {
   keys: [
     {
       keys: ',',
-      action: () => sendKey(',', 'Comma', 188, 44),
+      action: () => sendKey(',', 'Comma', 188, 50),
       desc: 'actions',
     },
   ],
