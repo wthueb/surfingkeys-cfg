@@ -23,14 +23,28 @@ export function html(strings: TemplateStringsArray, ...values: string[]) {
   return String.raw({ raw: strings }, ...values);
 }
 
-export function searchResult(params: {
-  title: string;
-  description?: string;
-  url: string;
-  img?: string;
-  timestamp?: string;
-}) {
-  const img = params.img ? html`<img class="thumb" alt="thumbnail" src="${params.img}" />` : '';
+export function searchResult(
+  params: {
+    title: string;
+    description?: string;
+    url: string;
+    timestamp?: string;
+  } & (
+    | {
+        img?: string;
+      }
+    | {
+        imgHtml: string;
+      }
+  ),
+) {
+  const img =
+    'imgHtml' in params
+      ? params.imgHtml
+      : params.img
+        ? html`<img class="thumb" alt="thumbnail" src="${params.img}" />`
+        : '';
+
   const description = params.description ? html`<div>${params.description}</div>` : '';
 
   const url = params.timestamp
