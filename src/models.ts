@@ -19,26 +19,34 @@ export enum Help {
   lurkMode = 16,
 }
 
-export interface Keymap {
+export type Keymap = {
   keys: Keys;
   action: () => void;
   desc: string;
   opts?: Parameters<typeof api.mapkey>[3];
   helpClass?: Help;
-}
+};
 
-export interface SiteConfig {
+export type SiteConfig = {
   domain: RegExp;
   keys: Keymap[];
-}
+};
 
 type CompletionResult = { html: string; props: { url: string } };
 
-export interface SearchEngine {
+export type SearchEngine = {
   alias: string;
   name: string;
   searchUrl: string;
-  compUrl: string;
-  compFn: (res: { text: string }) => CompletionResult[];
   faviconUrl: string;
-}
+} & (
+  | {
+      compUrl: string;
+      compFn: (res: { text: string }) => CompletionResult[];
+    }
+  | {
+      compUrl?: never;
+      compFn?: never;
+    }
+);
+
