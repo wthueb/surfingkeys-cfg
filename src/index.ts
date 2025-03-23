@@ -268,6 +268,7 @@ Hints.style(css`
   background: #282a36;
   border: none;
   font:
+    'Source Code Pro',
     bold 10pt 'Monaco',
     'SF Mono',
     'Lucida Console',
