@@ -1,10 +1,5 @@
 .sk_theme {
-  font:
-    'Source Code Pro',
-    10pt 'Monaco',
-    'SF Mono',
-    'Lucida Console',
-    monospaced;
+  font-family: 'Source Code Pro', 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
   color: #f8f8f2;
   background: #282a36;
 }
@@ -12,23 +7,23 @@
 /* search engine */
 .sk_theme #sk_omnibarSearchArea .prompt {
   color: #ffb86c;
-  font-size: 13pt;
+  font-size: 1rem;
 }
 
 .sk_theme #sk_omnibarSearchArea .separator {
   color: #f1fa8c;
-  font-size: 13pt;
+  font-size: 1rem;
 }
 
 .sk_theme #sk_omnibarSearchArea input {
   color: #f8f8f2;
-  font-size: 13pt;
+  font-size: 1rem;
 }
 
 /* result count */
 .sk_theme #sk_omnibarSearchArea .resultPage {
   color: #f1fa8c;
-  font-size: 10pt;
+  font-size: .8rem;
 }
 
 .sk_theme #sk_omnibarSearchResult ul li {
@@ -47,7 +42,7 @@
 .sk_theme #sk_omnibarSearchResult .thumb {
   max-width: 160px;
   height: 90px;
-  margin-right: 0.8em;
+  margin-right: 0.8rem;
 }
 
 .sk_theme #sk_omnibarSearchResult .url {
@@ -74,7 +69,7 @@
 
 .sk_theme input#sk_find {
   color: #f8f8f2;
-  font-size: 13pt;
+  font-size: 1rem;
 }
 
 .sk_theme .annotation {
@@ -82,5 +77,5 @@
 }
 
 #sk_status {
-  font-size: 13pt;
+  font-size: 1rem;
 }

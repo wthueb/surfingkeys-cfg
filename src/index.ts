@@ -267,12 +267,8 @@ Hints.style(css`
   color: #f8f8f2;
   background: #282a36;
   border: none;
-  font:
-    'Source Code Pro',
-    bold 10pt 'Monaco',
-    'SF Mono',
-    'Lucida Console',
-    monospaced;
+  font-family: 'Source Code Pro', 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
+  font-size: 0.8rem;
 `);
 
 Visual.style(
