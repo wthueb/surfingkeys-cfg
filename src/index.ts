@@ -3,7 +3,7 @@ import sites from 'src/sites';
 
 import { Help, Keymap } from 'src/models';
 
-import theme from 'src/css/theme.css';
+import theme from 'src/css/catppuccin-mocha-sky.css';
 import { css } from './utils';
 
 const { Normal, Front, Hints, Visual, RUNTIME } = api;
