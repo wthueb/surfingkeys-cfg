@@ -3,10 +3,9 @@ import sites from 'src/sites';
 
 import { Help, Keymap } from 'src/models';
 
-import theme from 'src/css/catppuccin-mocha-sky.css';
-import { css } from './utils';
+import 'src/themes/catppuccin-mocha';
 
-const { Normal, Front, Hints, Visual, RUNTIME } = api;
+const { Normal, Front, Hints, RUNTIME } = api;
 
 const INPUTABLE =
   'input:not([type=submit]), textarea, *[contenteditable=true], *[role=textbox], select, div.ace_cursor';
@@ -262,28 +261,3 @@ api.aceVimMap('kj', '<Esc>', 'insert');
 
 settings.hintAlign = 'left';
 settings.focusFirstCandidate = false;
-
-Hints.style(css`
-  color: #f8f8f2;
-  background: #282a36;
-  border: none;
-  font-family: 'Source Code Pro', 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
-  font-size: 0.8rem;
-`);
-
-Visual.style(
-  'cursor',
-  css`
-    background: #bd93f9;
-    color: #ff79c6;
-  `,
-);
-
-Visual.style(
-  'marks',
-  css`
-    background: #f1fa8c;
-  `,
-);
-
-settings.theme = theme;

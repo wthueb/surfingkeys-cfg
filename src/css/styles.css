@@ -1,0 +1,110 @@
+.sk_theme {
+  font-family: 'Source Code Pro', 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
+  color: var(--color-text-base);
+  background: var(--color-bg-base);
+}
+
+#sk_omnibar {
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+#sk_omnibarSearchArea,
+#sk_omnibarSearchResult {
+  margin: 0 !important;
+}
+
+/* search engine */
+#sk_omnibarSearchArea {
+  background: var(--color-bg-focused);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+/* > on left */
+#sk_omnibarSearchArea .prompt {
+  color: var(--color-text-prompt);
+  font-size: 1rem;
+}
+
+#sk_omnibarSearchArea .separator {
+  color: inherit;
+  font-size: 1rem;
+}
+
+#sk_omnibarSearchArea input {
+  color: inherit;
+  font-size: 1rem;
+}
+
+/* result count */
+#sk_omnibarSearchArea .resultPage {
+  color: var(--color-text-status);
+  font-size: 0.8rem;
+}
+
+#sk_omnibarSearchResult ul li {
+  background: inherit !important;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+#sk_omnibarSearchResult .url {
+  color: var(--color-text-accent);
+}
+
+#sk_omnibarSearchResult ul li.focused {
+  color: var(--color-text-focused);
+  background: var(--color-bg-focused) !important;
+}
+
+/* matching text */
+#sk_omnibarSearchResult .omnibar_highlight {
+  color: var(--color-text-matching);
+}
+
+#sk_omnibarSearchResult .omnibar_folder {
+  color: var(--color-text-secondary);
+}
+
+#sk_omnibarSearchResult .omnibar_timestamp {
+  color: var(--color-text-subtle);
+}
+
+#sk_omnibarSearchResult .omnibar_visitcount {
+  color: var(--color-text-subtle);
+}
+
+.sk_theme .annotation {
+  color: red;
+}
+
+#sk_status {
+  font-size: 1rem;
+  border-radius: 0.3rem 0.3rem 0 0;
+  border-color: var(--color-bg-secondary);
+}
+
+#sk_status:has(#sk_find) > span:nth-child(1) {
+  color: var(--color-text-prompt);
+  padding: 0 0.5rem 0 0 !important;
+  border-color: var(--color-bg-secondary);
+}
+
+#sk_status:has(#sk_find) > span:nth-child(2) {
+  padding: 0 !important;
+}
+
+#sk_find {
+  color: inherit;
+  font-size: 1rem;
+}
+.sk_theme #sk_omnibarSearchResult .result {
+  display: flex;
+}
+
+.sk_theme #sk_omnibarSearchResult .thumb {
+  max-width: 160px;
+  height: 90px;
+  margin-right: 0.8rem;
+}

@@ -1,81 +1,30 @@
-.sk_theme {
-  font-family: 'Source Code Pro', 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
-  color: #f8f8f2;
-  background: #282a36;
-}
+:root {
+  --nord0: #2e3440;
+  --nord1: #3b4252;
+  --nord2: #434c5e;
+  --nord3: #4c566a;
+  --nord4: #d8dee9;
+  --nord5: #e5e9f0;
+  --nord6: #eceff4;
+  --nord7: #8fbcbb;
+  --nord8: #88c0d0;
+  --nord9: #81a1c1;
+  --nord10: #5e81ac;
+  --nord11: #bf616a;
+  --nord12: #d08770;
+  --nord13: #ebcb8b;
+  --nord14: #a3be8c;
+  --nord15: #b48ead;
 
-/* search engine */
-.sk_theme #sk_omnibarSearchArea .prompt {
-  color: #ffb86c;
-  font-size: 1rem;
-}
-
-.sk_theme #sk_omnibarSearchArea .separator {
-  color: #f1fa8c;
-  font-size: 1rem;
-}
-
-.sk_theme #sk_omnibarSearchArea input {
-  color: #f8f8f2;
-  font-size: 1rem;
-}
-
-/* result count */
-.sk_theme #sk_omnibarSearchArea .resultPage {
-  color: #f1fa8c;
-  font-size: 0.8rem;
-}
-
-.sk_theme #sk_omnibarSearchResult ul li {
-  background: #282a36 !important;
-}
-
-.sk_theme #sk_omnibarSearchResult ul li.focused {
-  background: #44475a !important;
-}
-
-.sk_theme #sk_omnibarSearchResult .result {
-  display: flex;
-  flex-direction: row;
-}
-
-.sk_theme #sk_omnibarSearchResult .thumb {
-  max-width: 160px;
-  height: 90px;
-  margin-right: 0.8rem;
-}
-
-.sk_theme #sk_omnibarSearchResult .url {
-  color: #bd93f9;
-  font-weight: normal;
-}
-
-/* matching text */
-.sk_theme #sk_omnibarSearchResult .omnibar_highlight {
-  color: #ff79c6;
-}
-
-.sk_theme #sk_omnibarSearchResult .omnibar_folder {
-  color: #ffb86c;
-}
-
-.sk_theme #sk_omnibarSearchResult .omnibar_timestamp {
-  color: #6272a4;
-}
-
-.sk_theme #sk_omnibarSearchResult .omnibar_visitcount {
-  color: #6272a4;
-}
-
-.sk_theme input#sk_find {
-  color: #f8f8f2;
-  font-size: 1rem;
-}
-
-.sk_theme .annotation {
-  color: #f8f8f2;
-}
-
-#sk_status {
-  font-size: 1rem;
+  --color-bg-base: var(--nord0);
+  --color-bg-secondary: var(--nord1);
+  --color-bg-focused: var(--nord2);
+  --color-text-subtle: var(--nord3);
+  --color-text-focused: var(--nord5);
+  --color-text-base: var(--nord6);
+  --color-text-secondary: var(--nord7);
+  --color-text-accent: var(--nord8);
+  --color-text-prompt: var(--nord9);
+  --color-text-matching: var(--nord14);
+  --color-text-status: var(--nord15);
 }
