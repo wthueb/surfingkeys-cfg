@@ -1,5 +1,5 @@
-import theme from 'src/css/nord.css';
 import styles from 'src/css/styles.css';
+import theme from './theme.css';
 
 import { css } from 'src/utils';
 

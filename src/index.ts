@@ -4,6 +4,7 @@ import sites from 'src/sites';
 import { Help, Keymap } from 'src/models';
 
 import 'src/themes/catppuccin-mocha';
+// import 'src/themes/nord';
 
 const { Normal, Front, Hints, RUNTIME } = api;
 
