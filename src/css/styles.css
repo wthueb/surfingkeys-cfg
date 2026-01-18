@@ -1,7 +1,7 @@
 .sk_theme {
   font-family: 'Source Code Pro', 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
-  color: var(--color-text-base);
-  background: var(--color-bg-base);
+  color: var(--color-text);
+  background: var(--color-bg);
 }
 
 #sk_omnibar {
@@ -50,7 +50,7 @@
 }
 
 #sk_omnibarSearchResult .url {
-  color: var(--color-text-accent);
+  color: var(--color-accent);
 }
 
 #sk_omnibarSearchResult ul li.focused {
@@ -60,7 +60,7 @@
 
 /* matching text */
 #sk_omnibarSearchResult .omnibar_highlight {
-  color: var(--color-text-matching);
+  color: var(--color-success);
 }
 
 #sk_omnibarSearchResult .omnibar_folder {
@@ -75,6 +75,16 @@
   color: var(--color-text-subtle);
 }
 
+#sk_omnibarSearchResult .result {
+  display: flex;
+}
+
+#sk_omnibarSearchResult .thumb {
+  max-width: 160px;
+  height: 90px;
+  margin-right: 0.8rem;
+}
+
 .sk_theme .annotation {
   color: red;
 }
@@ -82,13 +92,15 @@
 #sk_status {
   font-size: 1rem;
   border-radius: 0.3rem 0.3rem 0 0;
-  border-color: var(--color-bg-secondary);
+  background: var(--color-bg-focused);
+  border-color: var(--color-border);
+  padding: 4px 8px;
 }
 
 #sk_status:has(#sk_find) > span:nth-child(1) {
   color: var(--color-text-prompt);
   padding: 0 0.5rem 0 0 !important;
-  border-color: var(--color-bg-secondary);
+  border-color: var(--color-separator);
 }
 
 #sk_status:has(#sk_find) > span:nth-child(2) {
@@ -98,13 +110,5 @@
 #sk_find {
   color: inherit;
   font-size: 1rem;
-}
-.sk_theme #sk_omnibarSearchResult .result {
-  display: flex;
-}
-
-.sk_theme #sk_omnibarSearchResult .thumb {
-  max-width: 160px;
-  height: 90px;
-  margin-right: 0.8rem;
+  background: inherit;
 }

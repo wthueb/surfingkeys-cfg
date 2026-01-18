@@ -7,12 +7,13 @@ import { css } from 'src/utils';
 const { Hints, Visual } = api;
 
 Hints.style(css`
-  color: #cdd6f4;
-  background: #313244;
-  border-color: #6c7086;
+  color: #1e1e2e;
+  background: #89b4fa;
+  border-color: #b4befe;
   border-radius: 0.3rem;
   font-family: 'Source Code Pro', 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-weight: normal;
 `);
 
 Visual.style(
