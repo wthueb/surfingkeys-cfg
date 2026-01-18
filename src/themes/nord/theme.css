@@ -16,15 +16,20 @@
   --nord14: #a3be8c;
   --nord15: #b48ead;
 
-  --color-bg-base: var(--nord0);
-  --color-bg-secondary: var(--nord1);
+  --color-bg: var(--nord0);
+  --color-text: var(--nord6);
+
   --color-bg-focused: var(--nord2);
-  --color-text-subtle: var(--nord3);
   --color-text-focused: var(--nord5);
-  --color-text-base: var(--nord6);
+
+  --color-separator: var(--nord1);
+  --color-border: var(--nord1);
+
   --color-text-secondary: var(--nord7);
-  --color-text-accent: var(--nord8);
   --color-text-prompt: var(--nord9);
-  --color-text-matching: var(--nord14);
+  --color-text-subtle: var(--nord3);
   --color-text-status: var(--nord15);
+
+  --color-accent: var(--nord8);
+  --color-success: var(--nord14);
 }

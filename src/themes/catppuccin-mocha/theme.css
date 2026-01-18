@@ -1,13 +1,18 @@
 :root {
-  --color-bg-base: var(--ctp-mocha-base);
-  --color-bg-secondary: var(--ctp-mocha-crust);
+  --color-bg: var(--ctp-mocha-base);
+  --color-text: var(--ctp-mocha-text);
+
   --color-bg-focused: var(--ctp-mocha-surface0);
-  --color-text-base: var(--ctp-mocha-text);
-  --color-text-subtle: var(--ctp-mocha-overlay1);
   --color-text-focused: var(--ctp-mocha-text);
+
+  --color-separator: var(--ctp-mocha-surface0);
+  --color-border: var(--ctp-mocha-overlay0);
+
   --color-text-secondary: var(--ctp-mocha-subtext0);
-  --color-text-accent: var(--ctp-mocha-blue);
   --color-text-prompt: var(--ctp-mocha-rosewater);
-  --color-text-matching: var(--ctp-mocha-green);
+  --color-text-subtle: var(--ctp-mocha-overlay1);
   --color-text-status: var(--ctp-mocha-blue);
+
+  --color-accent: var(--ctp-mocha-blue);
+  --color-success: var(--ctp-mocha-green);
 }
