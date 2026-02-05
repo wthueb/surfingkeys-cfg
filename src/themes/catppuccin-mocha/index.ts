@@ -10,9 +10,9 @@ Hints.style(css`
   color: #1e1e2e;
   background: #89b4fa;
   border-color: #b4befe;
-  border-radius: 0.3rem;
+  border-radius: 5px;
   font-family: 'Source Code Pro', 'Monaco', 'SF Mono', 'Lucida Console', monospaced;
-  font-size: 0.8rem;
+  font-size: 12px;
   font-weight: normal;
 `);
 
