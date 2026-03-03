@@ -54,7 +54,7 @@ declare const api: {
       request: { query: string; url: string },
     ) => void,
     onlyThisSiteKey: Keys = 'o',
-    options?: { faviconUrl: string; skipMaps: boolean; headers?: Record<string, string> },
+    options?: { favicon_url: string; skipMaps: boolean; headers?: Record<string, string> },
   ) => void;
   removeSearchAlias: (
     alias: string,
