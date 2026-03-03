@@ -3,22 +3,20 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "build": "tsc -noEmit && eslint src/ && node build.mjs",
+    "build": "tsc -noEmit && prettier --write src && eslint src/ && node build.mjs",
     "upload": "npm run build && gh gist edit $(gh gist list | grep surfingkeys.js | awk '{ print $1 }') surfingkeys.js"
   },
   "devDependencies": {
-    "@eslint/js": "^9.25.1",
+    "@eslint/js": "^10.0.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@types/eslint-config-prettier": "^6.11.3",
-    "@typescript-eslint/eslint-plugin": "^8.31.0",
-    "@typescript-eslint/parser": "^8.31.0",
-    "esbuild": "^0.23.1",
-    "esbuild-plugin-minify-html-literals": "^2.0.1",
-    "eslint": "^9.25.1",
-    "eslint-config-prettier": "^10.1.2",
-    "globals": "^16.0.0",
-    "prettier": "^3.5.3",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.31.0"
+    "esbuild": "^0.27.3",
+    "esbuild-plugin-minify-html-literals": "^3.0.0",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.56.1"
   },
   "dependencies": {
     "@catppuccin/palette": "^1.7.1"

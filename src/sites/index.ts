@@ -1,5 +1,4 @@
 import { SiteConfig } from 'src/models';
-
 import jira from './jira';
 import plex from './plex';
 import youtube from './youtube';

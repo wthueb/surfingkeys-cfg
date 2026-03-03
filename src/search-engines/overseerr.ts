@@ -1,7 +1,7 @@
 import { SearchEngine } from 'src/models';
+import { searchResult } from 'src/utils';
 
 import config from 'config.json';
-import { searchResult } from 'src/utils';
 
 type OverseerrCompResult = {
   results: ({

@@ -1,9 +1,9 @@
+import { Help, Keymap } from 'src/models';
 import searchEngines from 'src/search-engines';
 import sites from 'src/sites';
 
-import { Help, Keymap } from 'src/models';
-
 import 'src/themes/catppuccin-mocha';
+
 // import 'src/themes/nord';
 
 const { Normal, Front, Hints, RUNTIME } = api;
@@ -248,15 +248,9 @@ for (const searchEngine of searchEngines) {
     searchEngine.compUrl,
     searchEngine.compFn,
     'o',
-   { favicon_url: searchEngine.faviconUrl, skipMaps: true, headers: searchEngine.headers },
+    { favicon_url: searchEngine.faviconUrl, skipMaps: true, headers: searchEngine.headers },
   );
 }
-
-api.addSearchAlias(
-  'c',
-  'clash of clans wiki',
-  'https://clashofclans.fandom.com/wiki/Special:Search?scope=internal&navigationSearch=true&query=',
-);
 
 api.aceVimMap('kj', '<Esc>', 'insert');
 

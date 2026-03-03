@@ -1,7 +1,7 @@
 import { SearchEngine } from 'src/models';
+import { html, searchResult } from 'src/utils';
 
 import config from 'config.json';
-import { html, searchResult } from 'src/utils';
 
 type Thumbnail = {
   url: string;
@@ -63,7 +63,7 @@ const engine: SearchEngine = {
     (JSON.parse(res.text) as YoutubeCompletionResult).items.map((item) => {
       const thumb = item.snippet.thumbnails.default;
 
-      let markup = '';
+      let markup;
       let url = '';
 
       switch (item.id.kind) {

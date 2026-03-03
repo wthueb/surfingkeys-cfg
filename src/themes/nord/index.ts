@@ -1,7 +1,7 @@
-import styles from 'src/css/styles.css';
-import theme from './theme.css';
-
 import { css } from 'src/utils';
+
+import theme from './theme.css';
+import styles from 'src/css/styles.css';
 
 const { Hints, Visual } = api;
 

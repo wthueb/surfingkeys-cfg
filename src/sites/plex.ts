@@ -1,5 +1,6 @@
 import { SiteConfig } from 'src/models';
 import { sendKey } from 'src/utils';
+
 import config from 'config.json';
 
 const c: SiteConfig = {

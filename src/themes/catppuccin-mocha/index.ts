@@ -1,8 +1,8 @@
+import { css } from 'src/utils';
+
+import theme from './theme.css';
 import colors from '@catppuccin/palette/css/catppuccin.css';
 import styles from 'src/css/styles.css';
-import theme from './theme.css';
-
-import { css } from 'src/utils';
 
 const { Hints, Visual } = api;
 
