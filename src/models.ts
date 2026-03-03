@@ -43,9 +43,11 @@ export type SearchEngine = {
   | {
       compUrl: string;
       compFn: (res: { text: string }) => CompletionResult[];
+      headers?: Record<string, string>;
     }
   | {
       compUrl?: never;
       compFn?: never;
+      headers?: never;
     }
 );
