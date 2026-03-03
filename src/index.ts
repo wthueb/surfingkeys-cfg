@@ -248,7 +248,7 @@ for (const searchEngine of searchEngines) {
     searchEngine.compUrl,
     searchEngine.compFn,
     'o',
-    { faviconUrl: searchEngine.faviconUrl, skipMaps: true },
+    { faviconUrl: searchEngine.faviconUrl, skipMaps: true, headers: searchEngine.headers },
   );
 }
 
