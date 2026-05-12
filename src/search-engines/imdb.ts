@@ -1,19 +1,22 @@
 import { SearchEngine } from 'src/models';
 import { html, searchResult } from 'src/utils';
 
+type Image = {
+  height: number;
+  imageUrl: string;
+  width: number;
+};
+
 type PersonResult = {
   id: `nm${string}`;
   l: string; // full name
   s: string; // description
+  i?: Image;
 };
 
 type ContentResult = {
   id: `tt${string}`;
-  i?: {
-    height: number;
-    imageUrl: string;
-    width: number;
-  }; // image
+  i?: Image;
   l: string; // title
   q: 'feature' | 'TV series' | 'short';
   s: string; // cast
@@ -81,7 +84,7 @@ const engine: SearchEngine = {
             title: item.l,
             description: item.s,
             url,
-            imgHtml: personImgHtml,
+            ...(item.i ? { img: item.i.imageUrl } : { imgHtml: personImgHtml }),
           });
 
           return { html: markup, props: { url } };
@@ -93,25 +96,16 @@ const engine: SearchEngine = {
           const title = `${item.l} (${item.y ?? 'unknown'})`;
           const url = `https://imdb.com/title/${item.id}/`;
 
-          let markup: string;
-
-          if (item.i) {
-            markup = searchResult({
-              title,
-              description: item.s,
-              url,
-              img: item.i.imageUrl,
-            });
-          } else {
-            const imgHtml = item.q === 'TV series' ? seriesImgHtml : movieImgHtml;
-
-            markup = searchResult({
-              title,
-              description: item.s,
-              url,
-              imgHtml,
-            });
-          }
+          const markup = searchResult({
+            title,
+            description: item.s,
+            url,
+            ...(item.i
+              ? { img: item.i.imageUrl }
+              : {
+                  imgHtml: item.q === 'TV series' ? seriesImgHtml : movieImgHtml,
+                }),
+          });
 
           return { html: markup, props: { url } };
         }
