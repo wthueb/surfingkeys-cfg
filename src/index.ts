@@ -1,6 +1,7 @@
-import { Help, Keymap } from 'src/models';
+import { HeldKeymap, Help, Keymap } from 'src/models';
 import searchEngines from 'src/search-engines';
 import sites from 'src/sites';
+import { registerHeldKeymap } from 'src/utils';
 
 import 'src/themes/catppuccin-mocha';
 
@@ -230,7 +231,14 @@ for (const site of sites) {
   keymaps = keymaps.concat(site.keys);
 }
 
+const heldKeymaps: HeldKeymap[] = [];
+
 for (const keymap of keymaps) {
+  if (keymap.hold) {
+    heldKeymaps.push(keymap);
+    continue;
+  }
+
   const helpClass = keymap.helpClass ?? Help.misc;
   api.mapkey(keymap.keys, `#${helpClass}${keymap.desc}`, keymap.action, keymap.opts);
 }
@@ -250,6 +258,10 @@ for (const searchEngine of searchEngines) {
     'o',
     { favicon_url: searchEngine.faviconUrl, skipMaps: true, headers: searchEngine.headers },
   );
+}
+
+for (const keymap of heldKeymaps) {
+  registerHeldKeymap(keymap);
 }
 
 api.aceVimMap('kj', '<Esc>', 'insert');

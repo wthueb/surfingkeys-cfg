@@ -19,13 +19,30 @@ export enum Help {
   lurkMode = 16,
 }
 
-export type Keymap = {
+type KeymapBase = {
   keys: Keys;
-  action: () => void;
   desc: string;
   opts?: Parameters<typeof api.mapkey>[3];
   helpClass?: Help;
 };
+
+export type KeyboardKey = {
+  key: string;
+  code: string;
+  keyCode: number;
+};
+
+export type ActionKeymap = KeymapBase & {
+  action: () => void;
+  hold?: never;
+};
+
+export type HeldKeymap = KeymapBase & {
+  action?: never;
+  hold: KeyboardKey;
+};
+
+export type Keymap = ActionKeymap | HeldKeymap;
 
 export type SiteConfig = {
   domain: RegExp;

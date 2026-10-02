@@ -20,8 +20,8 @@ const config: SiteConfig = {
     },
     {
       keys: 's',
-      action: () => sendKey('k', 'KeyK', 75),
-      desc: 'play/pause',
+      hold: { key: ' ', code: 'Space', keyCode: 32 },
+      desc: 'play/pause; hold for 2x speed',
     },
     {
       keys: 'd',

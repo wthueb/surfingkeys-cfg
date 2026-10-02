@@ -21,7 +21,7 @@ const engine: SearchEngine = {
     (JSON.parse(res.text) as OverseerrCompResult).results.map((item) => {
       const posterUrl = item.posterPath
         ? `https://image.tmdb.org/t/p/w600_and_h900_bestv2/${item.posterPath}`
-        : `${config.overseerrUrl}/images/overseerr_poster_not_found_logo_top.png`;
+        : `${config.overseerrUrl}/images/seerr_poster_not_found_logo_top.png`;
       const url = `${config.overseerrUrl}/${item.mediaType}/${item.id}`;
 
       const markup = searchResult({

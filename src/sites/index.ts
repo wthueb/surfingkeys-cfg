@@ -8,6 +8,7 @@ const sites: SiteConfig[] = [jira, plex, youtube];
 for (const site of sites) {
   for (const keymap of site.keys) {
     keymap.opts = {
+      ...keymap.opts,
       domain: site.domain,
     };
   }
