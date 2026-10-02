@@ -1,3 +1,5 @@
+import type { KeyMappingOptions, Keys } from 'src/surfingkeys';
+
 // https://github.com/brookhong/Surfingkeys/blob/master/src/content_scripts/ui/frontend.js#L280
 export enum Help {
   help = 0,
@@ -22,7 +24,7 @@ export enum Help {
 type KeymapBase = {
   keys: Keys;
   desc: string;
-  opts?: Parameters<typeof api.mapkey>[3];
+  opts?: KeyMappingOptions;
   helpClass?: Help;
 };
 
