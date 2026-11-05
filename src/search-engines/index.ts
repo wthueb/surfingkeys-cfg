@@ -2,6 +2,7 @@ import github from './github';
 import google from './google';
 import imdb from './imdb';
 import lolwiki from './lolwiki';
+import mdblist from './mdblist';
 import nixpkgs from './nixpkgs';
 import overseerr from './overseerr';
 import plex from './plex';
@@ -14,6 +15,7 @@ export default [
   google,
   imdb,
   lolwiki,
+  mdblist,
   nixpkgs,
   plex.radarr,
   plex.radarr4k,
